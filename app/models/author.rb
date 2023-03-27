@@ -5,4 +5,8 @@ class Author < ApplicationRecord
   validates :is_alive, exclusion: [nil]
 
   has_many :books
+
+  def self.sorted
+    Author.order(:created_at)
+  end
 end
