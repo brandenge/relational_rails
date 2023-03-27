@@ -1,0 +1,17 @@
+<h1>Books Index</h1>
+
+<% @books.each do |book| %>
+  <h2>Title: <%= book.title %></h2>
+  <% if book.subtitle %>
+    <h3>Subtitle: <%= book.subtitle %></h3>
+  <% end %>
+  <p>Author: <%= link_to "#{book.author.name}", "/authors/#{book.author.id}" %></p>
+  <p>Publisher: <%= book.publisher %></p>
+  <p>Publication Date: <%= book.publication_date %></p>
+  <p>Is In Print: <%= book.is_in_print %></p>
+  <p>Page Count: <%= book.page_count %></p>
+  <p>ID: <%= book.id %></p>
+  <p>Created At: <%= book.created_at %></p>
+  <p>Updated At: <%= book.updated_at %></p>
+  <%= button_to "#{book.title} Details", "/books/#{book.id}", method: :get %>
+<% end %>
