@@ -6,7 +6,7 @@ module AuthorData
   }.freeze
 
   MALCOLM_GLADWELL = {
-    name: 'Malcom Gladwell',
+    name: 'Malcolm Gladwell',
     birthdate: '1963-09-03',
     citation_count: 1540
   }.freeze
