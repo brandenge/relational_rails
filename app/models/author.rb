@@ -9,4 +9,8 @@ class Author < ApplicationRecord
   def self.sorted
     Author.order(:created_at)
   end
+
+  def book_count
+    Book.where(author_id: id).count
+  end
 end

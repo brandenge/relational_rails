@@ -38,4 +38,22 @@ RSpec.describe 'Author Show Page', type: :feature do
     expect(page).to have_content("Created At: #{@jrr_tolkien.created_at}")
     expect(page).to have_content("Updated At: #{@jrr_tolkien.updated_at}")
   end
+
+  it 'shows the number of books the author has written' do
+    visit "/authors/#{@gabor_mate.id}"
+
+    expect(page).to have_content("Number of Published Books: #{@gabor_mate.books.size}")
+
+    visit "/authors/#{@malcolm_gladwell.id}"
+
+    expect(page).to have_content("Number of Published Books: #{@malcolm_gladwell.books.size}")
+
+    visit "/authors/#{@seth_godin.id}"
+
+    expect(page).to have_content("Number of Published Books: #{@seth_godin.books.size}")
+
+    visit "/authors/#{@jrr_tolkien.id}"
+
+    expect(page).to have_content("Number of Published Books: #{@jrr_tolkien.books.size}")
+  end
 end
