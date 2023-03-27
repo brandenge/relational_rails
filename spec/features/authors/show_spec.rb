@@ -1,6 +1,28 @@
 require 'rails_helper'
 
 RSpec.describe 'Author Show Page', type: :feature do
+  describe 'header tests' do
+    before(:each) do
+      visit "/authors/#{@gabor_mate.id}"
+    end
+
+    it 'has a "Relational Rails - Authors and Books" header' do
+      expect(page).to have_content('Relational Rails - Authors and Books')
+    end
+
+    it 'has a link to the authors index page' do
+      click_link('Authors Index')
+
+      expect(current_path).to eq('/authors')
+    end
+
+    it 'has a link to the books index page' do
+      click_link('Books Index')
+
+      expect(current_path).to eq('/books')
+    end
+  end
+
   it 'has a button on the author index page that links to the author show page' do
     visit '/authors'
 
@@ -55,5 +77,13 @@ RSpec.describe 'Author Show Page', type: :feature do
     visit "/authors/#{@jrr_tolkien.id}"
 
     expect(page).to have_content("Number of Published Books: #{@jrr_tolkien.books.size}")
+  end
+
+  it 'has a link to the author\'s bibliography' do
+    visit "/authors/#{@gabor_mate.id}"
+
+    click_link "#{@gabor_mate.name} Bibliography"
+
+    expect(current_path).to eq("/authors/#{@gabor_mate.id}/books")
   end
 end

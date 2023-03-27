@@ -1,7 +1,7 @@
-<h1>Book Details</h1>
-<h2>Title: <%= @book.title %></h2>
+<h2>Book Details</h2>
+<h3>Title: <%= @book.title %></h3>
 <% if @book.subtitle %>
-  <h3>Subtitle: <%= @book.subtitle %></h3>
+  <h4>Subtitle: <%= @book.subtitle %></h4>
 <% end %>
 <p>Author: <%= link_to "#{@book.author.name}", "/authors/#{@book.author.id}" %></p>
 <p>Publisher: <%= @book.publisher %></p>

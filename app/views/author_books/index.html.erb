@@ -1,9 +1,9 @@
-<h1>Books By <%= @author.name %></h1>
+<h2>Books By <%= @author.name %></h2>
 
 <% @author.books.each do |book| %>
-  <h2>Title: <%= book.title %></h2>
+  <h3>Title: <%= book.title %></h3>
   <% if book.subtitle %>
-    <h3>Subtitle: <%= book.subtitle %></h3>
+    <h4>Subtitle: <%= book.subtitle %></h4>
   <% end %>
   <p>Publisher: <%= book.publisher %></p>
   <p>Publication Date: <%= book.publication_date %></p>
