@@ -1,6 +1,6 @@
-<h1>Authors Index</h1>
+<h2>Authors Index</h2>
 
 <% @authors.each do |author| %>
-  <h2><%= author.name %></h2>
+  <h3><%= author.name %></h3>
   <%= button_to "#{author.name} Details", "/authors/#{author.id}", method: :get %>
 <% end %>

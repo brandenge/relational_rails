@@ -1,6 +1,28 @@
 require 'rails_helper'
 
 RSpec.describe 'Author Books Page', type: :feature do
+  describe 'header tests' do
+    before(:each) do
+      visit "/authors/#{@gabor_mate.id}/books"
+    end
+
+    it 'has a "Relational Rails - Authors and Books" header' do
+      expect(page).to have_content('Relational Rails - Authors and Books')
+    end
+
+    it 'has a link to the authors index page' do
+      click_link('Authors Index')
+
+      expect(current_path).to eq('/authors')
+    end
+
+    it 'has a link to the books index page' do
+      click_link('Books Index')
+
+      expect(current_path).to eq('/books')
+    end
+  end
+
   it 'has a "Books By Author" header ' do
     visit "/authors/#{@gabor_mate.id}/books"
 
@@ -122,5 +144,21 @@ RSpec.describe 'Author Books Page', type: :feature do
     expect(page).to have_content("ID: #{@book4_6.id}")
     expect(page).to have_content("Created At: #{@book4_6.created_at}")
     expect(page).to have_content("Updated At: #{@book4_6.updated_at}")
+  end
+
+  it 'has a link to the authors index page' do
+    visit '/authors'
+
+    click_link('Authors Index')
+
+    expect(current_path).to eq('/authors')
+  end
+
+  it 'has a link to the books index page' do
+    visit '/authors'
+
+    click_link('Books Index')
+
+    expect(current_path).to eq('/books')
   end
 end

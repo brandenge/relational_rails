@@ -1,6 +1,28 @@
 require 'rails_helper'
 
 RSpec.describe 'Books Index Page', type: :feature do
+  describe 'header tests' do
+    before(:each) do
+      visit '/books'
+    end
+
+    it 'has a "Relational Rails - Authors and Books" header' do
+      expect(page).to have_content('Relational Rails - Authors and Books')
+    end
+
+    it 'has a link to the authors index page' do
+      click_link('Authors Index')
+
+      expect(current_path).to eq('/authors')
+    end
+
+    it 'has a link to the books index page' do
+      click_link('Books Index')
+
+      expect(current_path).to eq('/books')
+    end
+  end
+
   it 'shows a "Books Index" header' do
     visit '/books'
 
