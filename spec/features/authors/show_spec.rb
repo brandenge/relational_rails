@@ -78,4 +78,12 @@ RSpec.describe 'Author Show Page', type: :feature do
 
     expect(page).to have_content("Number of Published Books: #{@jrr_tolkien.books.size}")
   end
+
+  it 'has a link to the author\'s bibliography' do
+    visit "/authors/#{@gabor_mate.id}"
+
+    click_link "#{@gabor_mate.name} Bibliography"
+
+    expect(current_path).to eq("/authors/#{@gabor_mate.id}/books")
+  end
 end

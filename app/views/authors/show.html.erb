@@ -4,6 +4,7 @@
 <p>Is Alive: <%= @author.is_alive %></p>
 <p>Citation Count: <%= @author.citation_count %></p>
 <p>Number of Published Books: <%= @author.book_count %></p>
+<p>Bibliography: <%= link_to "#{@author.name} Bibliography", "/authors/#{@author.id}/books" %>
 <p>ID: <%= @author.id %></p>
 <p>Created At: <%= @author.created_at %></p>
 <p>Updated At: <%= @author.updated_at %></p>
