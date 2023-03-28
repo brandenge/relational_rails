@@ -6,7 +6,6 @@ RSpec.describe 'Books Index Page', type: :feature do
   end
 
   describe 'header tests' do
-
     it 'has a "Relational Rails - Authors and Books" header' do
       expect(page).to have_content('Relational Rails - Authors and Books')
     end
@@ -49,6 +48,14 @@ RSpec.describe 'Books Index Page', type: :feature do
     expect(page).to_not have_content('Title: Email Addresses of the Rich & Famous')
     expect(page).to_not have_content('Title: Unleashing the Ideavirus')
     expect(page).to_not have_content('Title: On Fairy-Stories')
+  end
+
+  it 'has a link to the book show page' do
+    visit '/books'
+
+    click_link("#{@book1_1.title}")
+
+    expect(current_path).to eq("/books/#{@book1_1.id}")
   end
 
   it 'has a link to edit each book' do
