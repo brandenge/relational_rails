@@ -6,7 +6,6 @@ RSpec.describe 'Books Show Page', type: :feature do
   end
 
   describe 'header tests' do
-
     it 'has a "Relational Rails - Authors and Books" header' do
       expect(page).to have_content('Relational Rails - Authors and Books')
     end
