@@ -45,4 +45,26 @@ RSpec.describe 'Author Index Page', type: :feature do
 
     expect(current_path).to eq('/authors/new')
   end
+
+  it 'has a link to edit each author' do
+    visit '/authors'
+    click_link "Edit #{@gabor_mate.name}"
+
+    expect(current_path).to eq("/authors/#{@gabor_mate.id}/edit")
+
+    visit '/authors'
+    click_link "Edit #{@malcolm_gladwell.name}"
+
+    expect(current_path).to eq("/authors/#{@malcolm_gladwell.id}/edit")
+
+    visit '/authors'
+    click_link "Edit #{@seth_godin.name}"
+
+    expect(current_path).to eq("/authors/#{@seth_godin.id}/edit")
+
+    visit '/authors'
+    click_link "Edit #{@jrr_tolkien.name}"
+
+    expect(current_path).to eq("/authors/#{@jrr_tolkien.id}/edit")
+  end
 end
