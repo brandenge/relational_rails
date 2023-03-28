@@ -67,4 +67,10 @@ RSpec.describe 'Author Index Page', type: :feature do
 
     expect(current_path).to eq("/authors/#{@jrr_tolkien.id}/edit")
   end
+
+  it 'has a delete link next to each author' do
+    click_link "Delete #{@gabor_mate.name}"
+
+    expect(page).to_not have_content(@gabor_mate.name)
+  end
 end

@@ -58,8 +58,6 @@ RSpec.describe 'Books Show Page', type: :feature do
   end
 
   it 'has a link to delete the book' do
-    visit "/books/#{@book1_1.id}"
-
     click_link 'Delete Book'
 
     expect(current_path).to eq('/books')

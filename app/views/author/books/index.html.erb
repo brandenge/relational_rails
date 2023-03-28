@@ -4,7 +4,14 @@
 
 <%= link_to 'Sort Books By Title', "/authors/#{@author.id}/books?sort_by=title" %>
 
+<%= form_with url: "/authors/#{@author.id}/books", method: :get, local: true do |form| %>
+  <%= form.label :page_count_filter %>
+  <%= form.number_field :page_count_filter %>
+  <%= form.submit 'Only return records with more than number of page count' %>
+<% end %>
+
 <% @books.each do |book| %>
+
   <h3>Title: <%= link_to book.title, "/books/#{book.id}" %></h3>
   <% if book.subtitle %>
     <h4>Subtitle: <%= book.subtitle %></h4>
@@ -18,4 +25,5 @@
   <p>Updated At: <%= book.updated_at %></p>
 
   <%= link_to "Edit #{book.title}", "/books/#{book.id}/edit" %>
+  <%= link_to "Delete #{book.title}", "/books/#{book.id}", method: :delete %>
 <% end %>
