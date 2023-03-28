@@ -6,7 +6,6 @@ RSpec.describe 'Books Show Page', type: :feature do
   end
 
   describe 'header tests' do
-
     it 'has a "Relational Rails - Authors and Books" header' do
       expect(page).to have_content('Relational Rails - Authors and Books')
     end
@@ -58,8 +57,6 @@ RSpec.describe 'Books Show Page', type: :feature do
   end
 
   it 'has a link to delete the book' do
-    visit "/books/#{@book1_1.id}"
-
     click_link 'Delete Book'
 
     expect(current_path).to eq('/books')

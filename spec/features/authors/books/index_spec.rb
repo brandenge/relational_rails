@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Author Books Page', type: :feature do
+  before(:each) do
+    visit "/authors/#{@gabor_mate.id}/books"
+  end
+
   describe 'header tests' do
-    before(:each) do
-      visit "/authors/#{@gabor_mate.id}/books"
-    end
 
     it 'has a "Relational Rails - Authors and Books" header' do
       expect(page).to have_content('Relational Rails - Authors and Books')
@@ -195,5 +196,49 @@ RSpec.describe 'Author Books Page', type: :feature do
     click_link "Edit #{@book1_5.title}"
 
     expect(current_path).to eq("/books/#{@book1_5.id}/edit")
+  end
+
+  it 'has a button to filter books by their number of pages (books with page counts greater than the number)' do
+    visit "/authors/#{@gabor_mate.id}/books"
+    fill_in('Page count filter', with: 400)
+    click_button('Only return records with more than number of page count')
+
+    expect(page).to_not have_content("Title: #{@book1_1.title}")
+    expect(page).to_not have_content("Subtitle: #{@book1_1.subtitle}")
+    expect(page).to_not have_content("ID: #{@book1_1.id}")
+
+    expect(page).to_not have_content("Title: #{@book1_2.title}")
+    expect(page).to_not have_content("Subtitle: #{@book1_2.subtitle}")
+    expect(page).to_not have_content("ID: #{@book1_2.id}")
+
+    expect(page).to_not have_content("Title: #{@book1_3.title}")
+    expect(page).to_not have_content("Subtitle: #{@book1_3.subtitle}")
+    expect(page).to_not have_content("ID: #{@book1_3.id}")
+
+    expect(page).to have_content("Title: #{@book1_4.title}")
+    expect(page).to have_content("Subtitle: #{@book1_4.subtitle}")
+    expect(page).to have_content("Publisher: #{@book1_4.publisher}")
+    expect(page).to have_content("Publication Date: #{@book1_4.publication_date}")
+    expect(page).to have_content("Is In Print: #{@book1_4.is_in_print}")
+    expect(page).to have_content("Page Count: #{@book1_4.page_count}")
+    expect(page).to have_content("ID: #{@book1_4.id}")
+    expect(page).to have_content("Created At: #{@book1_4.created_at}")
+    expect(page).to have_content("Updated At: #{@book1_4.updated_at}")
+
+    expect(page).to have_content("Title: #{@book1_5.title}")
+    expect(page).to have_content("Subtitle: #{@book1_5.subtitle}")
+    expect(page).to have_content("Publisher: #{@book1_5.publisher}")
+    expect(page).to have_content("Publication Date: #{@book1_5.publication_date}")
+    expect(page).to have_content("Is In Print: #{@book1_5.is_in_print}")
+    expect(page).to have_content("Page Count: #{@book1_5.page_count}")
+    expect(page).to have_content("ID: #{@book1_5.id}")
+    expect(page).to have_content("Created At: #{@book1_5.created_at}")
+    expect(page).to have_content("Updated At: #{@book1_5.updated_at}")
+  end
+
+  it 'has a delete link next to each book' do
+    click_link "Delete #{@book1_1.title}"
+
+    expect(page).to_not have_content(@book1_1.title)
   end
 end

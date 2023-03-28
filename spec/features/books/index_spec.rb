@@ -84,4 +84,10 @@ RSpec.describe 'Books Index Page', type: :feature do
 
     expect(current_path).to eq("/books/#{@book1_5.id}/edit")
   end
+
+  it 'has a delete link next to each book' do
+    click_link "Delete #{@book1_1.title}"
+
+    expect(page).to_not have_content(@book1_1.title)
+  end
 end

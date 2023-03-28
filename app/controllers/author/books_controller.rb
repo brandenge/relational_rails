@@ -2,7 +2,11 @@ class Author::BooksController < ApplicationController
   def index
     @author = Author.find(params[:author_id])
     @books =
-      params[:sort_by] ? @author.books.order(params[:sort_by]) : @author.books
+    case
+    when params[:sort_by] then @author.books.order(params[:sort_by])
+    when params[:page_count_filter] then @author.books.where("page_count > #{params[:page_count_filter]}")
+    else @author.books
+    end
   end
 
   def new

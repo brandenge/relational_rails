@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Author Show Page', type: :feature do
+  before(:each) do
+    visit "/authors/#{@gabor_mate.id}"
+  end
+  
   describe 'header tests' do
-    before(:each) do
-      visit "/authors/#{@gabor_mate.id}"
-    end
 
     it 'has a "Relational Rails - Authors and Books" header' do
       expect(page).to have_content('Relational Rails - Authors and Books')
