@@ -30,7 +30,7 @@ RSpec.describe 'New Author Page', type: :feature do
   it 'can create a new author' do
     fill_in('Name', with: 'Cal Newport')
     fill_in('Birthdate', with: '06231982')
-    click_on('Is alive')
+    check('Is alive')
     fill_in('Citation count', with: '635')
     click_button('Create Author')
 
