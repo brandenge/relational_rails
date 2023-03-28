@@ -94,4 +94,13 @@ RSpec.describe 'Author Show Page', type: :feature do
 
     expect(current_path).to eq("/authors/#{@gabor_mate.id}/edit")
   end
+
+  it 'has a link to delete the author and all their books' do
+    visit "/authors/#{@gabor_mate.id}"
+
+    click_link 'Delete Author'
+
+    expect(current_path).to eq('/authors')
+    expect(page).to_not have_content(@gabor_mate.name)
+  end
 end
