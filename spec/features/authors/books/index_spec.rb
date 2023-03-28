@@ -153,4 +153,20 @@ RSpec.describe 'Author Books Page', type: :feature do
 
     expect(current_path).to eq("/authors/#{@gabor_mate.id}/books/new")
   end
+
+  it 'has a link that sorts the books by title' do
+    visit "/authors/#{@gabor_mate.id}/books"
+
+    expect('Scattered Minds').to appear_before('When the Body Says No')
+    expect('When the Body Says No').to appear_before('Hold on to Your Kids')
+    expect('Hold on to Your Kids').to appear_before('In the Realm of Hungry Ghosts')
+    expect('In the Realm of Hungry Ghosts').to appear_before('The Myth of Normal')
+
+    click_link('Sort Books By Title')
+
+    expect('Hold on to Your Kids').to appear_before('In the Realm of Hungry Ghosts')
+    expect('In the Realm of Hungry Ghosts').to appear_before('Scattered Minds')
+    expect('Scattered Minds').to appear_before('The Myth of Normal')
+    expect('The Myth of Normal').to appear_before('When the Body Says No')
+  end
 end

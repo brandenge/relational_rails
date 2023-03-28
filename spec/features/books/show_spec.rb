@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Books Show Page', type: :feature do
+  before(:each) do
+    visit "/books/#{@book1_1.id}"
+  end
+
   describe 'header tests' do
-    before(:each) do
-      visit "/books/#{@book1_1.id}"
-    end
 
     it 'has a "Relational Rails - Authors and Books" header' do
       expect(page).to have_content('Relational Rails - Authors and Books')
@@ -32,8 +33,6 @@ RSpec.describe 'Books Show Page', type: :feature do
   end
 
   it 'has a "Book Details" header' do
-    visit "/books/#{@book1_1.id}"
-
     expect(page).to have_content('Book Details')
   end
 
