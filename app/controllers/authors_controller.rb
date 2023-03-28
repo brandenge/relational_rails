@@ -16,12 +16,23 @@ class AuthorsController < ApplicationController
     redirect_to '/authors'
   end
 
+  def edit
+    @author = Author.find(params[:id])
+  end
+
+  def update
+    author = Author.find(params[:id])
+    author.update(author_params)
+    redirect_to "/authors/#{author.id}"
+  end
+
+  def destroy
+
+  end
+
   private
 
   def author_params
-    params[:birthdate] = params[:birthdate].last(4) + '-' + params[:birthdate][0..1] + '-' + params[:birthdate][2..3]
-    params[:citation_count] = params[:citation_count].to_i
-    params[:is_alive] = params[:is_alive] == '1' ? true : false
     params.permit(:name, :birthdate, :is_alive, :citation_count)
   end
 end

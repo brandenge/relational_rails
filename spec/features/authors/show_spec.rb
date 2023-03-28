@@ -86,4 +86,12 @@ RSpec.describe 'Author Show Page', type: :feature do
 
     expect(current_path).to eq("/authors/#{@gabor_mate.id}/books")
   end
+
+  it 'has a link to update the author' do
+    visit "/authors/#{@gabor_mate.id}"
+
+    click_link 'Update Author'
+
+    expect(current_path).to eq("/authors/#{@gabor_mate.id}/edit")
+  end
 end
