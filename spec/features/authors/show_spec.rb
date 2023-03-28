@@ -23,10 +23,10 @@ RSpec.describe 'Author Show Page', type: :feature do
     end
   end
 
-  it 'has a button on the author index page that links to the author show page' do
+  it 'has a link on the author index page that links to the author show page' do
     visit '/authors'
 
-    click_button("#{@gabor_mate.name} Details")
+    click_link(@gabor_mate.name)
 
     expect(current_path).to eq("/authors/#{@gabor_mate.id}")
   end
@@ -85,5 +85,13 @@ RSpec.describe 'Author Show Page', type: :feature do
     click_link "#{@gabor_mate.name} Bibliography"
 
     expect(current_path).to eq("/authors/#{@gabor_mate.id}/books")
+  end
+
+  it 'has a link to update the author' do
+    visit "/authors/#{@gabor_mate.id}"
+
+    click_link 'Update Author'
+
+    expect(current_path).to eq("/authors/#{@gabor_mate.id}/edit")
   end
 end

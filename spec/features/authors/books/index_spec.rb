@@ -146,19 +146,11 @@ RSpec.describe 'Author Books Page', type: :feature do
     expect(page).to have_content("Updated At: #{@book4_6.updated_at}")
   end
 
-  it 'has a link to the authors index page' do
-    visit '/authors'
+  it 'has a link to add a new book for the author' do
+    visit "/authors/#{@gabor_mate.id}/books"
 
-    click_link('Authors Index')
+    click_link('Create Book')
 
-    expect(current_path).to eq('/authors')
-  end
-
-  it 'has a link to the books index page' do
-    visit '/authors'
-
-    click_link('Books Index')
-
-    expect(current_path).to eq('/books')
+    expect(current_path).to eq("/authors/#{@gabor_mate.id}/books/new")
   end
 end

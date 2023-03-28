@@ -1,6 +1,7 @@
 <h2>Authors Index</h2>
 
+<%= link_to 'New Author', '/authors/new' %>
+
 <% @authors.each do |author| %>
-  <h3><%= author.name %></h3>
-  <%= button_to "#{author.name} Details", "/authors/#{author.id}", method: :get %>
+  <h3><%= link_to author.name, "/authors/#{author.id}" %></h3>
 <% end %>

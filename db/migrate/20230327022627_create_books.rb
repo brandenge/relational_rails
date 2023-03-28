@@ -1,4 +1,6 @@
 class CreateBooks < ActiveRecord::Migration[5.2]
+  # rails g migration CreateBooks title:text subtitle:text publisher:text publication_date:date is_in_print:boolean page_count:integer author:references
+
   def change
     create_table :books do |t|
       t.text :title, null: false

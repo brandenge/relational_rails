@@ -26,7 +26,7 @@ RSpec.describe 'Books Show Page', type: :feature do
   it 'has a button on the book index page that links to the book show page' do
     visit '/books'
 
-    click_button("#{@book1_1.title} Details")
+    click_link("#{@book1_1.title}")
 
     expect(current_path).to eq("/books/#{@book1_1.id}")
   end
