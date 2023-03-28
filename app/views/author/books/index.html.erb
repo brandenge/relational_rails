@@ -1,5 +1,7 @@
 <h2>Books By <%= @author.name %></h2>
 
+<%= link_to 'Create Book', "/authors/#{@author.id}/books/new" %>
+
 <% @author.books.each do |book| %>
   <h3>Title: <%= book.title %></h3>
   <% if book.subtitle %>

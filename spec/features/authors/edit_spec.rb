@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'New Author Page', type: :feature do
+RSpec.describe 'Edit Author Page', type: :feature do
   before(:each) do
     visit "/authors/#{@gabor_mate.id}/edit"
   end

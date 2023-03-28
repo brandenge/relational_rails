@@ -1,4 +1,7 @@
 <h2>Author Details</h2>
+
+<%= link_to 'Update Author', "/authors/#{@author.id}/edit" %>
+
 <h3>Name: <%= @author.name %></h3>
 <p>Birthdate: <%= @author.birthdate %></p>
 <p>Is Alive: <%= @author.is_alive %></p>
@@ -8,5 +11,3 @@
 <p>ID: <%= @author.id %></p>
 <p>Created At: <%= @author.created_at %></p>
 <p>Updated At: <%= @author.updated_at %></p>
-
-<%= link_to 'Update Author', "/authors/#{@author.id}/edit" %>
