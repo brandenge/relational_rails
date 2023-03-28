@@ -6,4 +6,8 @@ class Book < ApplicationRecord
   validates :is_in_print, exclusion: [nil]
 
   belongs_to :author
+
+  def self.in_print
+    Book.where(is_in_print: true)
+  end
 end
