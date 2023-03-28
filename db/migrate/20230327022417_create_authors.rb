@@ -1,4 +1,6 @@
 class CreateAuthors < ActiveRecord::Migration[5.2]
+  # rails g migration CreateAuthors name:text birthdate:date is_alive:boolean citation_count:integer
+
   def change
     create_table :authors do |t|
       t.text :name, null: false
