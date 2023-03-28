@@ -1,4 +1,4 @@
-class AuthorBooksController < ApplicationController
+class Author::BooksController < ApplicationController
   def index
     @author = Author.find(params[:author_id])
   end
