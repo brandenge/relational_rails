@@ -11,3 +11,5 @@
 <p>ID: <%= @author.id %></p>
 <p>Created At: <%= @author.created_at %></p>
 <p>Updated At: <%= @author.updated_at %></p>
+
+<%= link_to 'Delete Author', "/authors/#{@author.id}", method: :delete %>

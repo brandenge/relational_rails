@@ -24,14 +24,6 @@ RSpec.describe 'Books Show Page', type: :feature do
     end
   end
 
-  it 'has a button on the book index page that links to the book show page' do
-    visit '/books'
-
-    click_link("#{@book1_1.title}")
-
-    expect(current_path).to eq("/books/#{@book1_1.id}")
-  end
-
   it 'has a "Book Details" header' do
     expect(page).to have_content('Book Details')
   end
@@ -63,5 +55,14 @@ RSpec.describe 'Books Show Page', type: :feature do
     expect(page).to have_content("ID: #{@book4_1.id}")
     expect(page).to have_content("Created At: #{@book4_1.created_at}")
     expect(page).to have_content("Updated At: #{@book4_1.updated_at}")
+  end
+
+  it 'has a link to delete the book' do
+    visit "/books/#{@book1_1.id}"
+
+    click_link 'Delete Book'
+
+    expect(current_path).to eq('/books')
+    expect(page).to_not have_content(@book1_1.title)
   end
 end
