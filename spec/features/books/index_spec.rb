@@ -50,4 +50,31 @@ RSpec.describe 'Books Index Page', type: :feature do
     expect(page).to_not have_content('Title: Unleashing the Ideavirus')
     expect(page).to_not have_content('Title: On Fairy-Stories')
   end
+
+  it 'has a link to edit each book' do
+    visit '/books'
+    click_link "Edit #{@book1_1.title}"
+
+    expect(current_path).to eq("/books/#{@book1_1.id}/edit")
+
+    visit '/books'
+    click_link "Edit #{@book1_2.title}"
+
+    expect(current_path).to eq("/books/#{@book1_2.id}/edit")
+
+    visit '/books'
+    click_link "Edit #{@book1_3.title}"
+
+    expect(current_path).to eq("/books/#{@book1_3.id}/edit")
+
+    visit '/books'
+    click_link "Edit #{@book1_4.title}"
+
+    expect(current_path).to eq("/books/#{@book1_4.id}/edit")
+
+    visit '/books'
+    click_link "Edit #{@book1_5.title}"
+
+    expect(current_path).to eq("/books/#{@book1_5.id}/edit")
+  end
 end

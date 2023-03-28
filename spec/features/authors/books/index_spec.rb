@@ -169,4 +169,31 @@ RSpec.describe 'Author Books Page', type: :feature do
     expect('Scattered Minds').to appear_before('The Myth of Normal')
     expect('The Myth of Normal').to appear_before('When the Body Says No')
   end
+
+  it 'has a link to edit each book' do
+    visit "/authors/#{@gabor_mate.id}/books"
+    click_link "Edit #{@book1_1.title}"
+
+    expect(current_path).to eq("/books/#{@book1_1.id}/edit")
+
+    visit "/authors/#{@gabor_mate.id}/books"
+    click_link "Edit #{@book1_2.title}"
+
+    expect(current_path).to eq("/books/#{@book1_2.id}/edit")
+
+    visit "/authors/#{@gabor_mate.id}/books"
+    click_link "Edit #{@book1_3.title}"
+
+    expect(current_path).to eq("/books/#{@book1_3.id}/edit")
+
+    visit "/authors/#{@gabor_mate.id}/books"
+    click_link "Edit #{@book1_4.title}"
+
+    expect(current_path).to eq("/books/#{@book1_4.id}/edit")
+
+    visit "/authors/#{@gabor_mate.id}/books"
+    click_link "Edit #{@book1_5.title}"
+
+    expect(current_path).to eq("/books/#{@book1_5.id}/edit")
+  end
 end
