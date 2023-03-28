@@ -4,7 +4,7 @@
   <%= form.label :name %>
   <%= form.text_field :name, value: @author.name %>
   <%= form.label :birthdate %>
-  <%= form.text_field :birthdate, value: @author.birthdate.strftime('%Y-%m-%d') %>
+  <%= form.text_field :birthdate, value: @author.birthdate %>
   <%= form.label :is_alive %>
   <%= form.check_box :is_alive, checked: @author.is_alive %>
   <%= form.label :citation_count %>
