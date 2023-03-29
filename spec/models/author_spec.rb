@@ -13,9 +13,35 @@ RSpec.describe Author, type: :model do
   end
 
   describe 'class methods' do
-    describe '::sorted' do
+    describe '::sort_by_created_at' do
       it 'sorts all the authors by their created at timestamp in ascending order' do
-        expect(Author.sorted).to eq([@gabor_mate, @malcolm_gladwell, @seth_godin, @jrr_tolkien])
+        expect(Author.sort_by_created_at).to eq([@gabor_mate, @malcolm_gladwell, @seth_godin, @jrr_tolkien])
+      end
+    end
+
+    describe '::sort_by_book_count' do
+      it 'sorts all the authors by their created at timestamp in ascending order' do
+        expect(Author.sort_by_book_count).to eq([@seth_godin, @malcolm_gladwell, @jrr_tolkien, @gabor_mate])
+      end
+    end
+
+    describe '::exact_match_name' do
+      it 'gets the author with the given name, if any' do
+        expect(Author.exact_match_name(@jrr_tolkien.name)).to eq([@jrr_tolkien])
+      end
+
+      it 'returns an empty array if there is no match' do
+        expect(Author.exact_match_name('Cal Newport')).to eq([])
+      end
+    end
+
+    describe '::search_name' do
+      it 'gets the author with the given name, if any' do
+        expect(Author.exact_match_name(@jrr_tolkien.name)).to eq([@jrr_tolkien])
+      end
+
+      it 'returns an empty array if there is no match' do
+        expect(Author.exact_match_name('Cal Newport')).to eq([])
       end
     end
   end

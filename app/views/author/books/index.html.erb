@@ -10,6 +10,20 @@
   <%= form.submit 'Only return records with more than number of page count' %>
 <% end %>
 
+<%= form_with url: "/authors/#{@author.id}/books", method: :get, local: true do |form| %>
+  <%= form.label :exact_match_title %>
+  <%= form.text_field :exact_match_title %>
+
+  <%= form.submit 'Search for book title by exact match' %>
+<% end %>
+
+<%= form_with url: "/authors/#{@author.id}/books", method: :get, local: true do |form| %>
+  <%= form.label :search_title %>
+  <%= form.text_field :search_title %>
+
+  <%= form.submit 'Search for book titles' %>
+<% end %>
+
 <% @books.each do |book| %>
 
   <h3>Title: <%= link_to book.title, "/books/#{book.id}" %></h3>

@@ -3,9 +3,16 @@ class Author::BooksController < ApplicationController
     @author = Author.find(params[:author_id])
     @books =
     case
-    when params[:sort_by] then @author.books.order(params[:sort_by])
-    when params[:page_count_filter] then @author.books.where("page_count > #{params[:page_count_filter]}")
-    else @author.books
+    when params[:sort_by]
+      @author.books.order(params[:sort_by])
+    when params[:page_count_filter]
+      @author.books.where("page_count > #{params[:page_count_filter]}")
+    when params[:exact_match_title]
+      @author.books.where(title: params[:exact_match_title])
+    when params[:search_title]
+      @author.books.where("LOWER(title) LIKE '%#{params[:search_title]}%'")
+    else
+      @author.books
     end
   end
 

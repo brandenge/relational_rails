@@ -18,4 +18,16 @@ RSpec.describe Book, type: :model do
       expect(Book.in_print).to eq([@book1_1, @book1_2, @book1_3, @book1_4, @book1_5, @book2_1, @book2_2, @book2_3, @book2_4, @book2_5, @book2_6, @book2_7, @book3_2, @book3_4, @book3_5, @book3_6, @book3_7, @book3_8, @book3_9, @book4_2, @book4_3, @book4_4, @book4_5, @book4_6])
     end
   end
+
+  describe '::exact_match_title' do
+    it 'gets the book with the exact title' do
+      expect(Book.exact_match_title('The Silmarillion')).to eq([@book4_6])
+    end
+  end
+
+  describe '::search_title' do
+    it 'searches for books by their title' do
+      expect(Book.search_title('Market')).to eq([@book3_2, @book3_5])
+    end
+  end
 end
