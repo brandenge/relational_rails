@@ -5,24 +5,6 @@ RSpec.describe 'Author Index Page', type: :feature do
     visit '/authors'
   end
 
-  describe 'header tests' do
-    it 'has a "Relational Rails - Authors and Books" header' do
-      expect(page).to have_content('Relational Rails - Authors and Books')
-    end
-
-    it 'has a link to the authors index page' do
-      click_link('Authors Index')
-
-      expect(current_path).to eq('/authors')
-    end
-
-    it 'has a link to the books index page' do
-      click_link('Books Index')
-
-      expect(current_path).to eq('/books')
-    end
-  end
-
   it 'has an "Authors Index" header ' do
     expect(page).to have_content('Authors Index')
   end

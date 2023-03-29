@@ -4,25 +4,6 @@ RSpec.describe 'Author Show Page', type: :feature do
   before(:each) do
     visit "/authors/#{@gabor_mate.id}"
   end
-  
-  describe 'header tests' do
-
-    it 'has a "Relational Rails - Authors and Books" header' do
-      expect(page).to have_content('Relational Rails - Authors and Books')
-    end
-
-    it 'has a link to the authors index page' do
-      click_link('Authors Index')
-
-      expect(current_path).to eq('/authors')
-    end
-
-    it 'has a link to the books index page' do
-      click_link('Books Index')
-
-      expect(current_path).to eq('/books')
-    end
-  end
 
   it 'has a link on the author index page that links to the author show page' do
     visit '/authors'
