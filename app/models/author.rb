@@ -6,8 +6,20 @@ class Author < ApplicationRecord
 
   has_many :books
 
-  def self.sorted
+  def self.sort_by_created_at
     Author.order(:created_at)
+  end
+
+  def self.sort_by_book_count
+    Author.joins(:books).order(book_count: :desc).group(:id).select(:name).select(:id).select("COUNT(books.id) AS book_count")
+  end
+
+  def self.exact_match_name(name)
+    Author.where(name: name)
+  end
+
+  def self.search_name(name)
+    Author.where("LOWER(name) LIKE '%#{name}%'")
   end
 
   def book_count

@@ -1,6 +1,17 @@
 class AuthorsController < ApplicationController
   def index
-    @authors = Author.sorted
+    @authors =
+    case
+    when params[:book_count]
+      @sort_by_book_count = params[:book_count]
+      Author.sort_by_book_count
+    when params[:exact_match_name]
+      Author.exact_match_name(params[:exact_match_name])
+    when params[:search_name]
+      Author.search_name(params[:search_name])
+    else
+      Author.sort_by_created_at
+    end
   end
 
   def show

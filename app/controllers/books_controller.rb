@@ -1,6 +1,14 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.in_print
+    @books =
+    case
+    when params[:exact_match_title]
+      Book.exact_match_title(params[:exact_match_title])
+    when params[:search_title]
+      Book.search_title(params[:search_title])
+    else
+      Book.in_print
+    end
   end
 
   def show

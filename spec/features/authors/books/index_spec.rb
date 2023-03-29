@@ -241,4 +241,26 @@ RSpec.describe 'Author Books Page', type: :feature do
 
     expect(page).to_not have_content(@book1_1.title)
   end
+
+  it 'can search for a book by an exact match of its title' do
+    fill_in('Exact match title', with: 'Hold on to Your Kids')
+    click_button 'Search for book title by exact match'
+
+    expect(page).to have_content(@book1_3.title)
+    expect(page).to_not have_content(@book1_1.title)
+    expect(page).to_not have_content(@book2_1.title)
+    expect(page).to_not have_content(@book3_1.title)
+    expect(page).to_not have_content(@book4_1.title)
+  end
+
+  it 'can search for books by their title' do
+    fill_in('Search title', with: 'the')
+    click_button 'Search for book titles'
+
+    expect(page).to have_content(@book1_2.title)
+    expect(page).to have_content(@book1_4.title)
+    expect(page).to have_content(@book1_5.title)
+    expect(page).to_not have_content(@book1_1.title)
+    expect(page).to_not have_content(@book1_3.title)
+  end
 end

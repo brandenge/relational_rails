@@ -10,4 +10,12 @@ class Book < ApplicationRecord
   def self.in_print
     Book.where(is_in_print: true)
   end
+
+  def self.exact_match_title(title)
+    Book.where(title: title)
+  end
+
+  def self.search_title(title)
+    Book.where("LOWER(title) LIKE '%#{title.downcase}%'")
+  end
 end
