@@ -37,11 +37,11 @@ RSpec.describe Author, type: :model do
 
     describe '::search_name' do
       it 'gets the author with the given name, if any' do
-        expect(Author.exact_match_name(@jrr_tolkien.name)).to eq([@jrr_tolkien])
+        expect(Author.search_name('gabor')).to eq([@gabor_mate])
       end
 
       it 'returns an empty array if there is no match' do
-        expect(Author.exact_match_name('Cal Newport')).to eq([])
+        expect(Author.search_name('Cal Newport')).to eq([])
       end
     end
   end

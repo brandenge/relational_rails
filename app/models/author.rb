@@ -15,11 +15,11 @@ class Author < ApplicationRecord
   end
 
   def self.exact_match_name(name)
-    Author.where(name: name)
+    Author.where("LOWER(name) LIKE '#{name.downcase}'")
   end
 
   def self.search_name(name)
-    Author.where("LOWER(name) LIKE '%#{name}%'")
+    Author.where("LOWER(name) LIKE '%#{name.downcase}%'")
   end
 
   def book_count
