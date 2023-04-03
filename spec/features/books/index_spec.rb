@@ -41,30 +41,12 @@ RSpec.describe 'Books Index Page', type: :feature do
   end
 
   it 'has a link to edit each book' do
-    visit '/books'
-    click_link "Edit #{@book1_1.title}"
+    Book.in_print.each do |book|
+      visit '/books'
+      click_link "Edit #{book.title}"
 
-    expect(current_path).to eq("/books/#{@book1_1.id}/edit")
-
-    visit '/books'
-    click_link "Edit #{@book1_2.title}"
-
-    expect(current_path).to eq("/books/#{@book1_2.id}/edit")
-
-    visit '/books'
-    click_link "Edit #{@book1_3.title}"
-
-    expect(current_path).to eq("/books/#{@book1_3.id}/edit")
-
-    visit '/books'
-    click_link "Edit #{@book1_4.title}"
-
-    expect(current_path).to eq("/books/#{@book1_4.id}/edit")
-
-    visit '/books'
-    click_link "Edit #{@book1_5.title}"
-
-    expect(current_path).to eq("/books/#{@book1_5.id}/edit")
+      expect(current_path).to eq("/books/#{book.id}/edit")
+    end
   end
 
   it 'has a delete link next to each book' do

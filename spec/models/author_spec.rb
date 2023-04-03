@@ -6,6 +6,7 @@ RSpec.describe Author, type: :model do
     it { should validate_presence_of :birthdate }
     it { should validate_presence_of :citation_count }
     it { should validate_numericality_of(:citation_count) }
+    it { should validate_length_of(:citation_count) }
     it { should validate_exclusion_of(:is_alive).in_array([nil, ""]) }
   end
 

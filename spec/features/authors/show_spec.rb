@@ -44,21 +44,11 @@ RSpec.describe 'Author Show Page', type: :feature do
   end
 
   it 'shows the number of books the author has written' do
-    visit "/authors/#{@gabor_mate.id}"
+    Author.all.each do |author|
+      visit "/authors/#{author.id}"
 
-    expect(page).to have_content("Number of Published Books: #{@gabor_mate.books.size}")
-
-    visit "/authors/#{@malcolm_gladwell.id}"
-
-    expect(page).to have_content("Number of Published Books: #{@malcolm_gladwell.books.size}")
-
-    visit "/authors/#{@seth_godin.id}"
-
-    expect(page).to have_content("Number of Published Books: #{@seth_godin.books.size}")
-
-    visit "/authors/#{@jrr_tolkien.id}"
-
-    expect(page).to have_content("Number of Published Books: #{@jrr_tolkien.books.size}")
+      expect(page).to have_content("Number of Published Books: #{author.books.size}")
+    end
   end
 
   it 'has a link to the author\'s bibliography' do

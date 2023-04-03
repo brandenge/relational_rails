@@ -2,9 +2,9 @@ class BooksController < ApplicationController
   def index
     @books =
     case
-    when params[:exact_match_title]
+    when params[:exact_match_title].present?
       Book.exact_match_title(params[:exact_match_title])
-    when params[:search_title]
+    when params[:search_title].present?
       Book.search_title(params[:search_title])
     else
       Book.in_print
@@ -34,6 +34,12 @@ class BooksController < ApplicationController
   private
 
   def book_params
+    convert_params
     params.permit(:title, :subtitle, :publisher, :publication_date, :is_in_print, :page_count)
+  end
+
+  def convert_params
+    params[:is_in_print] = convert_check_box(params[:is_in_print])
+    params[:page_count] = params[:page_count].to_i
   end
 end

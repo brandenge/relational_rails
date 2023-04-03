@@ -2,12 +2,12 @@ class AuthorsController < ApplicationController
   def index
     @authors =
     case
-    when params[:book_count]
+    when params[:book_count].present?
       @sort_by_book_count = params[:book_count]
       Author.sort_by_book_count
-    when params[:exact_match_name]
+    when params[:exact_match_name].present?
       Author.exact_match_name(params[:exact_match_name])
-    when params[:search_name]
+    when params[:search_name].present?
       Author.search_name(params[:search_name])
     else
       Author.sort_by_created_at
@@ -39,7 +39,6 @@ class AuthorsController < ApplicationController
 
   def destroy
     author = Author.find(params[:id])
-    author.books.destroy_all
     author.destroy
     redirect_to '/authors'
   end
@@ -47,6 +46,12 @@ class AuthorsController < ApplicationController
   private
 
   def author_params
+    convert_params
     params.permit(:name, :birthdate, :is_alive, :citation_count)
+  end
+
+  def convert_params
+    params[:is_alive] = convert_check_box(params[:is_alive])
+    params[:citation_count] = params[:citation_count].to_i
   end
 end

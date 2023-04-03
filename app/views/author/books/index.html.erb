@@ -12,14 +12,14 @@
 
 <%= form_with url: "/authors/#{@author.id}/books", method: :get, local: true do |form| %>
   <%= form.label :exact_match_title %>
-  <%= form.text_field :exact_match_title %>
+  <%= form.search_field :exact_match_title %>
 
   <%= form.submit 'Search for book title by exact match' %>
 <% end %>
 
 <%= form_with url: "/authors/#{@author.id}/books", method: :get, local: true do |form| %>
   <%= form.label :search_title %>
-  <%= form.text_field :search_title %>
+  <%= form.search_field :search_title %>
 
   <%= form.submit 'Search for book titles' %>
 <% end %>

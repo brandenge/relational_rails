@@ -7,6 +7,7 @@ RSpec.describe Book, type: :model do
     it { should validate_presence_of :publication_date }
     it { should validate_presence_of :page_count }
     it { should validate_numericality_of(:page_count) }
+    it { should validate_length_of(:page_count) }
     it { should validate_exclusion_of(:is_in_print).in_array([nil, ""]) }
   end
 
