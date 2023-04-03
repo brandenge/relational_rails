@@ -13,7 +13,7 @@ RSpec.describe 'Edit Author Page', type: :feature do
     fill_in('Name', with: 'New Name')
     fill_in('Birthdate', with: '1934-04-23')
     uncheck('Is alive')
-    fill_in('Citation count', with: '435')
+    fill_in('Citation count', with: 435)
     click_button('Update Author')
 
     expect(current_path).to eq("/authors/#{@gabor_mate.id}")

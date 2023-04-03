@@ -15,7 +15,7 @@ RSpec.describe 'Edit Book Page', type: :feature do
     fill_in('Publisher', with: 'Portfolio')
     fill_in('Publication date', with: '2023-03-15')
     uncheck('Is in print')
-    fill_in('Page count', with: '238')
+    fill_in('Page count', with: 238)
 
     click_button('Update Book')
 
