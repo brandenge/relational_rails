@@ -1,7 +1,6 @@
 class Author < ApplicationRecord
-  validates :name, presence: true
-  validates :birthdate, presence: true
-  validates :citation_count, presence: true, numericality: true
+  validates_presence_of :name, :birthdate, :citation_count
+  validates :citation_count, numericality: true
   validates :is_alive, exclusion: [nil, ""]
 
   has_many :books
