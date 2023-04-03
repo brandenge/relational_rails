@@ -11,6 +11,9 @@ include BookData
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Book.destroy_all
+Author.destroy_all
+
 gabor_mate = Author.create!(GABOR_MATE)
 malcolm_gladwell = Author.create!(MALCOLM_GLADWELL)
 seth_godin = Author.create!(SETH_GODIN)

@@ -1,9 +1,9 @@
 class Book < ApplicationRecord
-  validates_presence_of :title
-  validates_presence_of :publisher
-  validates_presence_of :publication_date
-  validates_presence_of :page_count
-  validates :is_in_print, exclusion: [nil]
+  validates :title, presence: true
+  validates :publisher, presence: true
+  validates :publication_date, presence: true
+  validates :page_count, presence: true, numericality: true
+  validates :is_in_print, exclusion: [nil, ""]
 
   belongs_to :author
 
