@@ -14,6 +14,6 @@ class Book < ApplicationRecord
   end
 
   def self.search_title(title)
-    Book.where("LOWER(title) LIKE '%#{title.downcase}%'")
+    Book.where('title ILIKE ?', "%#{title}%")
   end
 end

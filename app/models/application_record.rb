@@ -6,10 +6,10 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
   def self.exact_match_name(name)
-    where("name ILIKE '#{name}'")
+    where('name ILIKE ?', "#{name}")
   end
 
   def self.search_name(name)
-    where("name ILIKE '%#{name}%'")
+    where('name ILIKE ?', "%#{name}%")
   end
 end
