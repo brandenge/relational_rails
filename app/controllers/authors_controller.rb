@@ -23,8 +23,13 @@ class AuthorsController < ApplicationController
   end
 
   def create
-    Author.create(author_params)
-    redirect_to '/authors'
+    author = Author.new(author_params)
+    if author.save
+      redirect_to '/authors'
+    else
+      redirect_to '/authors/new'
+      flash[:alert] = "Error: #{error_message(author.errors)}"
+    end
   end
 
   def edit
@@ -33,8 +38,12 @@ class AuthorsController < ApplicationController
 
   def update
     author = Author.find(params[:id])
-    author.update(author_params)
-    redirect_to "/authors/#{author.id}"
+    if author.update(author_params)
+      redirect_to "/authors/#{author.id}"
+    else
+      redirect_to "/authors/#{author.id}/edit"
+      flash[:alert] = "Error: #{error_message(author.errors)}"
+    end
   end
 
   def destroy

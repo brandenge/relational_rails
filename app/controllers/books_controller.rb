@@ -21,25 +21,17 @@ class BooksController < ApplicationController
 
   def update
     book = Book.find(params[:id])
-    book.update(book_params)
-    redirect_to "/books/#{book.id}"
+    if book.update(book_params)
+      redirect_to "/books/#{book.id}"
+    else
+      redirect_to "/books/#{book.id}/edit"
+      flash[:alert] = "Error: #{error_message(pet.errors)}"
+    end
   end
 
   def destroy
     book = Book.find(params[:id])
     book.destroy
     redirect_to '/books'
-  end
-
-  private
-
-  def book_params
-    convert_params
-    params.permit(:title, :subtitle, :publisher, :publication_date, :is_in_print, :page_count)
-  end
-
-  def convert_params
-    params[:is_in_print] = convert_check_box(params[:is_in_print])
-    params[:page_count] = params[:page_count].to_i
   end
 end
